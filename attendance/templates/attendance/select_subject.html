@@ -1,0 +1,14 @@
+<h3>Select subject.</h3>
+<form action="{% url 'timetable' %}" method="post"> 
+
+{% csrf_token %}
+<script>
+
+    // alert('test');
+</script>
+{% for subject in subjects %}
+    <p><input type="submit" name="subject" value="{{ subject.subject_name }}"></p>
+{% endfor %}
+    <input type="hidden" name="week" value="{{ week }}">
+    <input type="hidden" name="time" value="{{ time }}">
+</form>

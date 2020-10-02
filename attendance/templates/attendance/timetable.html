@@ -1,0 +1,674 @@
+
+<script>
+    function openWindow(){
+        window.open('{% url 'select_subject' %}','subwin','width=300,height=300');
+        // document.form1.action = "{% url 'select_subject' %}";
+        // document.form1.method = "post";
+        // document.form1.target = 'new_window';
+        // document.form1.submit();
+        return false;
+    }
+</script>
+<h1>時間割表</h1>
+<h3>{{user}}さんのポイント:</h3>
+
+<table border="1">
+    <tr>
+        <th>時間</th>
+        <th>月曜日</th>
+        <th>火曜日</th>
+        <th>水曜日</th>
+        <th>木曜日</th>
+        <th>金曜日</th>
+        <th>土曜日</th>
+        <th>日曜日</th>
+    </tr>
+    <tr>
+        <th>1時間目</th>
+        <td>
+            {% if student.monday1 %}
+                {{student.monday1}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="1">
+                    <input type="hidden" name="time" value="1">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="1">
+                <input type="hidden" name="time" value="1">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.tuesday1 %}
+                {{student.tuesday1}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="2">
+                    <input type="hidden" name="time" value="1">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="2">
+                <input type="hidden" name="time" value="1">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.wednesday1 %}
+                {{student.wednesday1}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="3">
+                    <input type="hidden" name="time" value="1">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="3">
+                <input type="hidden" name="time" value="1">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.thursday1 %}
+                {{student.thursday1}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="4">
+                    <input type="hidden" name="time" value="1">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="4">
+                <input type="hidden" name="time" value="1">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.friday1 %}
+                {{student.friday1}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="5">
+                    <input type="hidden" name="time" value="1">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="5">
+                <input type="hidden" name="time" value="1">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.saturday1 %}
+                {{student.saturday1}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="6">
+                    <input type="hidden" name="time" value="1">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="6">
+                <input type="hidden" name="time" value="1">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.sunday1 %}
+                {{student.sunday1}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="7">
+                    <input type="hidden" name="time" value="1">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="7">
+                <input type="hidden" name="time" value="1">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <th>2時間目</th>
+        <td> 
+            {% if student.monday2 %}
+                {{student.monday2}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="1">
+                    <input type="hidden" name="time" value="2">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="1">
+                <input type="hidden" name="time" value="2">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.tuesday2 %}
+                {{student.tuesday2}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="2">
+                    <input type="hidden" name="time" value="2">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="2">
+                <input type="hidden" name="time" value="2">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.wednesday2 %}
+                {{student.wednesday2}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="3">
+                    <input type="hidden" name="time" value="2">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="3">
+                <input type="hidden" name="time" value="2">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.thursday2 %}
+                {{student.thursday2}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="4">
+                    <input type="hidden" name="time" value="2">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="4">
+                <input type="hidden" name="time" value="2">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.friday2 %}
+                {{student.friday2}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="5">
+                    <input type="hidden" name="time" value="2">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="5">
+                <input type="hidden" name="time" value="2">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.saturday2 %}
+                {{student.saturday2}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="6">
+                    <input type="hidden" name="time" value="2">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="6">
+                <input type="hidden" name="time" value="2">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.sunday2 %}
+                {{student.sunday2}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="7">
+                    <input type="hidden" name="time" value="2">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="7">
+                <input type="hidden" name="time" value="2">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <th>3時間目</th>
+        <td>
+            {% if student.monday3 %}
+                {{student.monday3}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="1">
+                    <input type="hidden" name="time" value="3">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="1">
+                <input type="hidden" name="time" value="3">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.tuesday3 %}
+                {{student.tuesday3}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="2">
+                    <input type="hidden" name="time" value="3">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="2">
+                <input type="hidden" name="time" value="3">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.wednesday3 %}
+                {{student.wednesday3}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="3">
+                    <input type="hidden" name="time" value="3">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="3">
+                <input type="hidden" name="time" value="3">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.thursday3 %}
+                {{student.thursday3}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="4">
+                    <input type="hidden" name="time" value="3">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="4">
+                <input type="hidden" name="time" value="3">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.friday3 %}
+                {{student.friday3}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="5">
+                    <input type="hidden" name="time" value="3">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="5">
+                <input type="hidden" name="time" value="3">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.saturday3 %}
+                {{student.saturday3}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="6">
+                    <input type="hidden" name="time" value="3">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="6">
+                <input type="hidden" name="time" value="3">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.sunday3 %}
+                {{student.sunday3}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="7">
+                    <input type="hidden" name="time" value="3">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="7">
+                <input type="hidden" name="time" value="3">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <th>4時間目</th>
+        <td>
+            {% if student.monday4 %}
+                {{student.monday4}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="1">
+                    <input type="hidden" name="time" value="4">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="1">
+                <input type="hidden" name="time" value="4">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.tuesday4 %}
+                {{student.tuesday4}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="2">
+                    <input type="hidden" name="time" value="4">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="2">
+                <input type="hidden" name="time" value="4">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.wednesday4 %}
+                {{student.wednesday4}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="3">
+                    <input type="hidden" name="time" value="4">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="3">
+                <input type="hidden" name="time" value="4">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.thursday4 %}
+                {{student.thursday4}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="4">
+                    <input type="hidden" name="time" value="4">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="4">
+                <input type="hidden" name="time" value="4">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.friday4 %}
+                {{student.friday4}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="5">
+                    <input type="hidden" name="time" value="4">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="5">
+                <input type="hidden" name="time" value="4">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.saturday4 %}
+                {{student.saturday4}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="6">
+                    <input type="hidden" name="time" value="4">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="6">
+                <input type="hidden" name="time" value="4">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.sunday4 %}
+                {{student.sunday4}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="7">
+                    <input type="hidden" name="time" value="4">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="7">
+                <input type="hidden" name="time" value="4">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <th>5時間目</th>
+        <td>
+            {% if student.monday5 %}
+                {{student.monday5}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="1">
+                    <input type="hidden" name="time" value="5">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="1">
+                <input type="hidden" name="time" value="5">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.tuesday5 %}
+                {{student.tuesday5}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="2">
+                    <input type="hidden" name="time" value="5">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="2">
+                <input type="hidden" name="time" value="5">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.wednesday5 %}
+                {{student.wednesday5}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="3">
+                    <input type="hidden" name="time" value="5">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="3">
+                <input type="hidden" name="time" value="5">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.thursday5 %}
+                {{student.thursday5}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="4">
+                    <input type="hidden" name="time" value="5">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="4">
+                <input type="hidden" name="time" value="5">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.friday5 %}
+                {{student.friday5}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="5">
+                    <input type="hidden" name="time" value="5">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="5">
+                <input type="hidden" name="time" value="5">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.saturday5 %}
+                {{student.saturday5}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="6">
+                    <input type="hidden" name="time" value="5">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="6">
+                <input type="hidden" name="time" value="5">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+        <td>
+            {% if student.sunday5 %}
+                {{student.sunday5}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="7">
+                    <input type="hidden" name="time" value="5">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="7">
+                <input type="hidden" name="time" value="5">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+    </tr>
+</table>
+<p>
+    <a href="{% url 'logout' %}">logout</a>
+</p>
