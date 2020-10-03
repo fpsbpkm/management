@@ -5,7 +5,7 @@ from .forms import SignUpForm,SignInForm
 from django.contrib.auth.decorators import login_required
 
 from django.views import generic
-from .models import Subject, Student
+from .models import Subject, StudentTimetable, StudentPoints
 from .register import register_student_subject, delete_student_subject
 
 @login_required
@@ -13,33 +13,42 @@ def timetable(request):
     user = request.user
     # 借りの処理
     register_result = True
-
     if request.method == 'POST':
-
         # 科目を登録するの場合
         if request.POST["subject"] != '削除':
             subject = request.POST['subject']
-            week = int(request.POST['week'])
-            time = int(request.POST['time'])
-            register_result = register_student_subject(user, subject, week, time)
+            week = request.POST['week']
+            period = request.POST['period']
+            # データベースに登録
+            register_result = register_student_subject(user, subject, week, period)
 
         # 登録削除の処理
         elif request.POST["subject"] == "削除":
-            week = int(request.POST['week'])
-            time = int(request.POST['time'])
-            delete_student_subject(user, week, time)
-    
-    student = Student.objects.get(user=user)
+            week = request.POST['week']
+            period = request.POST['period']
+            delete_student_subject(user, week, period)
+    weeks = ['monday', 'tuesday', 'wednesday',
+                'thursday', 'friday', 'saturday', 'sunday']
+    periods = ['period1', 'period2', 
+                    'period3', 'period4', 'period5']
 
-    context = {'user':user, 'student':student, 'register_result':register_result}
+    student_timetable = StudentTimetable.objects.filter(user=user)
+    student_points = StudentPoints.objects.get(user=user)
+    sorted_data = []
+    for period in periods:
+        for week in weeks:
+            s = StudentTimetable.objects.filter(user=user, week=week, period=period)
+            sorted_data.extend(s)
+    
+    context = {'user':user, 'sorted_data':sorted_data, 'student_points':student_points,'register_result':register_result}
     return render(request, 'attendance/timetable.html', context)
 
 def select_subject(request):
     if request.method == 'POST':
         week = request.POST['week']
-        time = request.POST['time']
-        subjects = Subject.objects.filter(week=week, time=time)
-        context = {'week':week, 'time':time, 'subjects':subjects}
+        period = request.POST['period']
+        subjects = Subject.objects.filter(week=week, period=period)
+        context = {'week':week, 'period':period, 'subjects':subjects}
         return render(request, 'attendance/select_subject.html', context)
     else:
         return render(request, 'attendance/select_subject.html')

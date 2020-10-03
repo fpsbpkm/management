@@ -1,4 +1,4 @@
-
+{% load static %}
 <script>
     function openWindow(){
         window.open('{% url 'select_subject' %}','subwin','width=300,height=300');
@@ -14,7 +14,7 @@
 
 
 <h1>時間割表</h1>
-<h3>{{user}}さんのポイント:{{student.points}}</h3>
+<h3>{{user}}さんのポイント:{{student_points.points}}</h3>
 
 {% if not register_result %}
     <font color="red">ポイント不足のため，登録できませんでした．</font>
@@ -31,26 +31,41 @@
         <th>土曜日</th>
         <th>日曜日</th>
     </tr>
-    <tr>
-        <th>1時間目</th>
+
+        {% for record in sorted_data %}
+            {% if record.week == "monday" %}
+                <tr>
+                <th>{{record.period}}</th>
+            {% endif %}
         <td>
-            {% if student.monday1 %}
-                {{student.monday1}}
+            {% if record.subject %}
+                {{record.subject}}
                 <form action="{% url 'timetable' %}" method="post">
                     {% csrf_token %}
                     <input type="submit" name="subject" value="削除">
-                    <input type="hidden" name="week" value="1">
-                    <input type="hidden" name="time" value="1">
+                    <input type="hidden" name="week" value="{{record.week}}">
+                    <input type="hidden" name="period" value="{{record.period}}">
                 </form>
             {% else %}
             <form name="form1" action="{% url 'select_subject' %}" method="post">
                 {% csrf_token %}
-                <input type="hidden" name="week" value="1">
-                <input type="hidden" name="time" value="1">
+                <input type="hidden" name="week" value="{{record.week}}">
+                <input type="hidden" name="period" value="{{record.period}}">
                 <input type="submit" value="登録">
             </form>
             {% endif %}
         </td>
+        {% endfor %}
+
+
+
+
+
+
+<!-- 
+
+
+
         <td>
             {% if student.tuesday1 %}
                 {{student.tuesday1}}
@@ -675,7 +690,7 @@
             </form>
             {% endif %}
         </td>
-    </tr>
+    </tr> -->
 </table>
 <p>
     <a href="{% url 'logout' %}">logout</a>
