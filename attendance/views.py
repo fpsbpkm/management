@@ -38,7 +38,6 @@ def select_subject(request):
     if request.method == 'POST':
         week = request.POST['week']
         time = request.POST['time']
-        # week,timeを使って，データベースから科目を取得する必要がある．
         subjects = Subject.objects.filter(week=week, time=time)
         context = {'week':week, 'time':time, 'subjects':subjects}
         return render(request, 'attendance/select_subject.html', context)
