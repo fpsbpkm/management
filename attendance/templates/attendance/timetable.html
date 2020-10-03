@@ -8,9 +8,17 @@
         // document.form1.submit();
         return false;
     }
+    
 </script>
+
+
+
 <h1>時間割表</h1>
-<h3>{{user}}さんのポイント:</h3>
+<h3>{{user}}さんのポイント:{{student.points}}</h3>
+
+{% if not register_result %}
+    <font color="red">ポイントがなかったため，登録できませんでした．</font>
+{% endif %}
 
 <table border="1">
     <tr>
@@ -672,3 +680,4 @@
 <p>
     <a href="{% url 'logout' %}">logout</a>
 </p>
+

@@ -83,6 +83,9 @@ def select_time(student, week, time):
 
 def register_student_subject(user, subject, week, time):
     student = Student.objects.get(user=user)
+    
+    if student.points <= 0:
+        return False
     if week == 1:
         if time == 1:
             student.monday1 = subject
@@ -160,7 +163,9 @@ def register_student_subject(user, subject, week, time):
             student.sunday4 = subject
         elif time == 5:
             student.sunday5 = subject
+    student.points -= 1
     student.save()
+    return True
 
 def delete_student_subject(user, week, time):
     student = Student.objects.get(user=user)
@@ -241,4 +246,5 @@ def delete_student_subject(user, week, time):
             student.sunday4 = ""
         elif time == 5:
             student.sunday5 = ""
+    student.points += 1
     student.save()

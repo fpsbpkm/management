@@ -7,35 +7,31 @@ from django.contrib.auth.decorators import login_required
 from django.views import generic
 from .models import Subject, Student
 from .register import register_student_subject, delete_student_subject
-import numpy as np
 
 @login_required
 def timetable(request):
-
-    weeks = ["monday", "tuesday", "wednesday", 
-            "thursday","friday", "saturday", "sunday"]
     user = request.user
-    context = {'user':user}
+    # 借りの処理
+    register_result = True
+
     if request.method == 'POST':
+
         # 科目を登録するの場合
         if request.POST["subject"] != '削除':
             subject = request.POST['subject']
             week = int(request.POST['week'])
             time = int(request.POST['time'])
-            register_student_subject(user, subject, week, time)
+            register_result = register_student_subject(user, subject, week, time)
+
+        # 登録削除の処理
         elif request.POST["subject"] == "削除":
             week = int(request.POST['week'])
             time = int(request.POST['time'])
             delete_student_subject(user, week, time)
-
-    student = Student.objects.get(user=user)
-    fields = [i.name for i in Student._meta.get_fields()]
-    timetable = np.array(fields[3:]).reshape(7,5)
     
-    student_timetable = Student.objects.defer("user", "points")
+    student = Student.objects.get(user=user)
 
-
-    context = {'user':user, 'student':student, 'timetable':timetable}
+    context = {'user':user, 'student':student, 'register_result':register_result}
     return render(request, 'attendance/timetable.html', context)
 
 def select_subject(request):
