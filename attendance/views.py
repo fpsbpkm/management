@@ -27,20 +27,10 @@ def timetable(request):
             week = request.POST['week']
             period = request.POST['period']
             delete_student_subject(user, week, period)
-    weeks = ['monday', 'tuesday', 'wednesday',
-                'thursday', 'friday', 'saturday', 'sunday']
-    periods = ['period1', 'period2', 
-                    'period3', 'period4', 'period5']
 
     student_timetable = StudentTimetable.objects.filter(user=user)
     student_points = StudentPoints.objects.get(user=user)
-    sorted_data = []
-    for period in periods:
-        for week in weeks:
-            s = StudentTimetable.objects.filter(user=user, week=week, period=period)
-            sorted_data.extend(s)
-    
-    context = {'user':user, 'sorted_data':sorted_data, 'student_points':student_points,'register_result':register_result}
+    context = {'user':user, 'student_timetable':student_timetable, 'student_points':student_points,'register_result':register_result}
     return render(request, 'attendance/timetable.html', context)
 
 def select_subject(request):
