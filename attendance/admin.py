@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Subject, StudentTimetable
 
-# Register your models here.
+admin.site.register(StudentTimetable)
+admin.site.register(Subject)

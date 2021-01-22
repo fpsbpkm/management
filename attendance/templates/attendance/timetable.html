@@ -1,0 +1,45 @@
+{% load static %}
+<h1>時間割表</h1>
+<h3>{{user}}さんのポイント:{{student_points.points}}</h3>
+{% if not register_result %}
+    <font color="red">ポイント不足のため，登録できませんでした．</font>
+{% endif %}
+<table border="1">
+    <tr>
+        <th>時間</th>
+        <th>月曜日</th>
+        <th>火曜日</th>
+        <th>水曜日</th>
+        <th>木曜日</th>
+        <th>金曜日</th>
+        <th>土曜日</th>
+        <th>日曜日</th>
+    </tr>
+    {% for record in student_timetable %}
+    {% if record.week == "monday" %}
+        <tr>
+        <th>{{record.period}}</th>
+    {% endif %}
+        <td>
+            {% if record.subject %}
+                {{record.subject}}
+                <form action="{% url 'timetable' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="subject" value="削除">
+                    <input type="hidden" name="week" value="{{record.week}}">
+                    <input type="hidden" name="period" value="{{record.period}}">
+                </form>
+            {% else %}
+            <form name="form1" action="{% url 'select_subject' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="week" value="{{record.week}}">
+                <input type="hidden" name="period" value="{{record.period}}">
+                <input type="submit" value="登録">
+            </form>
+            {% endif %}
+        </td>
+    {% endfor %}
+</table>
+<p>
+    <a href="{% url 'logout' %}">logout</a>
+</p>
