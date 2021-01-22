@@ -1,23 +1,9 @@
 {% load static %}
-<script>
-    function openWindow(){
-        window.open('{% url 'select_subject' %}','subwin','width=300,height=300');
-        // document.form1.action = "{% url 'select_subject' %}";
-        // document.form1.method = "post";
-        // document.form1.target = 'new_window';
-        // document.form1.submit();
-        return false;
-    }
-    
-</script>
-
 <h1>時間割表</h1>
 <h3>{{user}}さんのポイント:{{student_points.points}}</h3>
-
 {% if not register_result %}
     <font color="red">ポイント不足のため，登録できませんでした．</font>
 {% endif %}
-
 <table border="1">
     <tr>
         <th>時間</th>
@@ -29,13 +15,11 @@
         <th>土曜日</th>
         <th>日曜日</th>
     </tr>
-
     {% for record in student_timetable %}
     {% if record.week == "monday" %}
         <tr>
         <th>{{record.period}}</th>
     {% endif %}
-
         <td>
             {% if record.subject %}
                 {{record.subject}}
@@ -54,7 +38,6 @@
             </form>
             {% endif %}
         </td>
-
     {% endfor %}
 </table>
 <p>

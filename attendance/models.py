@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.contrib.auth.models import AbstractUser
 
 class Subject(models.Model):
     subject_name = models.CharField(max_length=30)
@@ -23,8 +24,8 @@ def create_student_data(sender, instance, created, **kwargs):
     if created:
         weeks = ['monday', 'tuesday', 'wednesday',
                 'thursday', 'friday', 'saturday', 'sunday']
-        periods = ['period1', 'period2', 
-                    'period3', 'period4', 'period5']
+        periods = ['1', '2', 
+                    '3', '4', '5']
         for period in periods:
             for week in weeks:
                 record = StudentTimetable(user=instance, week=week, period=period)

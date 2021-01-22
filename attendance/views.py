@@ -30,7 +30,8 @@ def timetable(request):
 
     student_timetable = StudentTimetable.objects.filter(user=user)
     student_points = StudentPoints.objects.get(user=user)
-    context = {'user':user, 'student_timetable':student_timetable, 'student_points':student_points,'register_result':register_result}
+    context = {'user':user, 'student_timetable':student_timetable, 
+                'student_points':student_points,'register_result':register_result}
     return render(request, 'attendance/timetable.html', context)
 
 def select_subject(request):
@@ -47,6 +48,7 @@ def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
+            # ユーザが入力したフォーム内容をデータベースに保存
             form.save()
             return redirect('timetable')
     else:
