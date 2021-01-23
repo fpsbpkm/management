@@ -3,9 +3,8 @@ from django.http import HttpResponse
 from django.template import loader
 from .forms import SignUpForm,SignInForm
 from django.contrib.auth.decorators import login_required
-
 from django.views import generic
-from .models import Subject, StudentTimetable, StudentPoints
+from .models import Subject, StudentRegisteredClass, StudentPoints
 from .register import register_student_subject, delete_student_subject
 
 @login_required
@@ -14,21 +13,14 @@ def timetable(request):
     # 借りの処理
     register_result = True
     if request.method == 'POST':
-        # 科目を登録するの場合
+        # 登録処理（ifの条件が良くないかも）
         if request.POST["subject"] != '削除':
-            subject = request.POST['subject']
-            week = request.POST['week']
-            period = request.POST['period']
-            # データベースに登録
-            register_result = register_student_subject(user, subject, week, period)
-
-        # 登録削除の処理
+            register_result = StudentRegisteredClass.register_class(request)
+        # 削除処理
         elif request.POST["subject"] == "削除":
-            week = request.POST['week']
-            period = request.POST['period']
-            delete_student_subject(user, week, period)
+            StudentRegisteredClass.delete_class(request)
 
-    student_timetable = StudentTimetable.objects.filter(user=user)
+    student_timetable = StudentRegisteredClass.objects.filter(user=user)
     student_points = StudentPoints.objects.get(user=user)
     context = {'user':user, 'student_timetable':student_timetable, 
                 'student_points':student_points,'register_result':register_result}

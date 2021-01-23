@@ -1,7 +1,7 @@
-from .models import StudentTimetable, StudentPoints
+from .models import StudentRegisteredClass, StudentPoints
 
 def register_student_subject(user, subject, week, period):
-    student_timetable = StudentTimetable.objects.get(user=user, week=week, period=period)
+    student_timetable = StudentRegisteredClass.objects.get(user=user, week=week, period=period)
     student_points = StudentPoints.objects.get(user=user)
 
     # ポイントが足りなければ，登録失敗を返す
@@ -16,7 +16,7 @@ def register_student_subject(user, subject, week, period):
    
 
 def delete_student_subject(user, week, period):
-    student_timetable = StudentTimetable.objects.get(user=user, week=week, period=period)
+    student_timetable = StudentRegisteredClass.objects.get(user=user, week=week, period=period)
     student_points = StudentPoints.objects.get(user=user)
     student_timetable.subject = ""
     student_points.points += 1
