@@ -24,8 +24,7 @@ def create_student_data(sender, instance, created, **kwargs):
     if created:
         weeks = ['monday', 'tuesday', 'wednesday',
                 'thursday', 'friday', 'saturday', 'sunday']
-        periods = ['1', '2', 
-                    '3', '4', '5']
+        periods = ['1', '2', '3', '4', '5']
         for period in periods:
             for week in weeks:
                 record = StudentTimetable(user=instance, week=week, period=period)
