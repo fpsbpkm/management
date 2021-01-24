@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Subject, StudentTimetable
+from .models import Subject, StudentRegisteredClass, Student
 
-admin.site.register(StudentTimetable)
+admin.site.register(StudentRegisteredClass)
 admin.site.register(Subject)
+admin.site.register(Student)
